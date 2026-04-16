@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<StackPane fx:id="rootPane" onKeyPressed="#gererClavier" focusTraversable="true"
+<StackPane fx:id="rootPane" onKeyPressed="#handleKeyPress" focusTraversable="true"
            prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css"
            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.example.javaproject.DialogueIntermediaireController">
-    <ImageView fitHeight="600.0" fitWidth="800.0">
-        <Image url="@/images/ville_nuit.jpg"/>
-    </ImageView>
 
-    <ImageView fx:id="chefImage" fitHeight="450.0" preserveRatio="true" StackPane.alignment="BOTTOM_CENTER">
-        <Image url="@/images/chef.png"/>
-    </ImageView>
+<ImageView fitHeight="600.0" fitWidth="800.0">
+    <Image url="@images/ville_nuit.jpeg" />
+</ImageView>
 
-    <VBox maxHeight="180.0"
+<ImageView fx:id="chefImage" fitHeight="450.0" preserveRatio="true" StackPane.alignment="BOTTOM_CENTER">
+    <Image url="@images/chef.jpeg" />
+</ImageView>
+
+<VBox maxHeight="180.0" spacing="10.0" styleClass="dialogue-box" StackPane.alignment="BOTTOM_CENTER">
+    <padding>
+        <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+    </padding>
+    <children>
+        <Label fx:id="labelNom" styleClass="name-label" text="Chef" />
+        <Label fx:id="labelTexte" styleClass="dialogue-text" wrapText="true" maxWidth="700.0" />
+        <Label text="[ ESPACE ]" style="-fx-text-fill: #555;" />
+    </children>
+    <StackPane.margin>
+        <Insets bottom="10.0" left="10.0" right="10.0" />
+    </StackPane.margin>
+</VBox>
 </StackPane>
+
