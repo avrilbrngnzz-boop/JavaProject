@@ -14,18 +14,18 @@
 </ImageView>
 
 <ImageView fx:id="chefImage" fitHeight="450.0" preserveRatio="true" StackPane.alignment="BOTTOM_CENTER">
-    <Image url="@images/chef.jpeg" />
+    <Image url="@images/chef2.jpeg" />
 </ImageView>
 
 <VBox maxHeight="180.0" spacing="10.0" styleClass="dialogue-box" StackPane.alignment="BOTTOM_CENTER">
     <padding>
         <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
     </padding>
-    <children>
-        <Label fx:id="labelNom" styleClass="name-label" text="Chef" />
-        <Label fx:id="labelTexte" styleClass="dialogue-text" wrapText="true" maxWidth="700.0" />
-        <Label text="[ ESPACE ]" style="-fx-text-fill: #555;" />
-    </children>
+
+    <Label fx:id="labelNom" styleClass="name-label" text="Chef" />
+    <Label fx:id="labelTexte" styleClass="dialogue-text" wrapText="true" maxWidth="700.0" />
+    <Label text="[ ESPACE ]" style="-fx-text-fill: #555;" />
+
     <StackPane.margin>
         <Insets bottom="10.0" left="10.0" right="10.0" />
     </StackPane.margin>
