@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane fx:id="rootPane" onKeyPressed="#gererClavier" focusTraversable="true"
+           prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css"
+           xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.javaproject.DialogueIntermediaireController">
+    <ImageView fitHeight="600.0" fitWidth="800.0">
+        <Image url="@/images/ville_nuit.jpg"/>
+    </ImageView>
+
+    <ImageView fx:id="chefImage" fitHeight="450.0" preserveRatio="true" StackPane.alignment="BOTTOM_CENTER">
+        <Image url="@/images/chef.png"/>
+    </ImageView>
+
+    <VBox maxHeight="180.0"
+</StackPane>
