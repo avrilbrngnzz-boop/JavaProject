@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.application.Platform;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -38,6 +40,7 @@ public class DialogueIntermediaireController {
     public void initialize() {
         labelNom.setText("Chef");
         showNextPhrase();
+        Platform.runLater(() -> rootPane.requestFocus());
     }
 
     @FXML
