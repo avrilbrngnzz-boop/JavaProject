@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.HelloController">
     <children>
-        <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="600.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="300.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@image_flic_java.png" />
             </image>
