@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.QuizController">
+   <children>
+      <Label fx:id="scoreLabel" layoutX="720.0" layoutY="20.0" text="0/5" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="questionLabel" layoutX="50.0" layoutY="150.0" prefWidth="700.0" text="Chargement..." textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <HBox fx:id="reponseBox" layoutX="50.0" layoutY="260.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0" />
+      <Label fx:id="vraiFauxLabel" layoutX="50.0" layoutY="400.0" prefWidth="700.0" text="Label" textFill="WHITE" wrapText="true" />
+      <Button fx:id="suivantButton" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" onAction="#onNext" style="-fx-background-color: red;" text="Suivant" textFill="WHITE" />
+   </children>
+</AnchorPane>
