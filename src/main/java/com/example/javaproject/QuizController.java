@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import java.util.List;
+import java.util.ArrayList;
 
 public class QuizController {
     @FXML private Label scoreLabel;
@@ -21,6 +22,14 @@ public class QuizController {
         vraiFauxLabel.setText("");
         scoreLabel.setText("0/5");
         questionLabel.setText("Chargement...");
+
+        //TEST
+        ArrayList<String> reponsesTest = new ArrayList<>();
+        reponsesTest.add("Paris");
+        reponsesTest.add("Londres");
+        reponsesTest.add("Berlin");
+        reponsesTest.add("Madrid");
+        setQuestion("Quelle est la capitale de la France ?", "Paris", reponsesTest);
     }
 
     public void setQuestion(String question, String correct, List<String> answers ){
