@@ -1,11 +1,10 @@
 package com.example.javaproject;
-import java.util.List;
 
-public class QuizQuestion {
-    public List<Result> results;
+public class QuizEn {
+    /*public List<Result> results;
     public static class Result {
         public String question;
         public String correct_answer;
         public List<String> incorrect_answers;
-    }
+    }*/
 }

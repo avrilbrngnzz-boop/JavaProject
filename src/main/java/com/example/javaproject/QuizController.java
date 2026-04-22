@@ -1,6 +1,8 @@
 package com.example.javaproject;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -20,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuizController {
+
     @FXML private Label scoreLabel;
     @FXML private Label questionLabel;
     @FXML private Label vraiFauxLabel;
@@ -31,13 +35,10 @@ public class QuizController {
     private final Gson gson = new Gson();
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         suivantButton.setVisible(false);
         vraiFauxLabel.setText("");
         scoreLabel.setText("0/5");
-
-        // appel de l'api au lieu du test
-        chargerNouvelleQuestion();
 
         //TEST
         /*ArrayList<String> reponsesTest = new ArrayList<>();
@@ -46,9 +47,12 @@ public class QuizController {
         reponsesTest.add("Berlin");
         reponsesTest.add("Madrid");
         setQuestion("Quelle est la capitale de la France ?", "Paris", reponsesTest);*/
+
+        chargerNouvelleQuestion();
     }
 
-    private void chargerNouvelleQuestion() {
+    //Version Anglaise
+    /*private void chargerNouvelleQuestion() {
         questionLabel.setText("Chargement...");
         reponseBox.getChildren().clear();
 
@@ -72,7 +76,6 @@ public class QuizController {
         if (data != null && data.results != null && !data.results.isEmpty()) {
             QuizQuestion.Result res = data.results.get(0);
 
-            // Nettoyage et préparation des réponses
             String questionNettoyee = nettoyerTexte(res.question);
             correctReponse = nettoyerTexte(res.correct_answer);
 
@@ -83,11 +86,58 @@ public class QuizController {
             }
             Collections.shuffle(toutesReponses);
 
-            // Modif pour mise à jour de l'interface
+            // mise à jour de l'interface
             Platform.runLater(() -> {
                 questionLabel.setText(questionNettoyee);
                 vraiFauxLabel.setText("");
                 suivantButton.setVisible(false);
+
+                for (String answer : toutesReponses) {
+                    Button btn = new Button(answer);
+                    btn.setStyle("-fx-background-color: #3a3a5c; -fx-text-fill: white; -fx-font-size: 13px;");
+                    btn.setOnAction(e -> checkAnswer(answer));
+                    reponseBox.getChildren().add(btn);
+                }
+            });
+        }
+    }*/
+
+    //Version Française
+    private void chargerNouvelleQuestion() {
+        questionLabel.setText("Chargement...");
+        reponseBox.getChildren().clear();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://quizzapi.jomoreschi.fr/api/v2/quiz?limit=1&category=tv_cinema&difficulty=facile"))
+                .build();
+
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenAccept(this::traiterResultatAPI)
+                .exceptionally(e -> {
+                    Platform.runLater(() -> questionLabel.setText("Erreur réseau, réessayez..."));
+                    return null;
+                });
+    }
+
+    private void traiterResultatAPI(String json) {
+
+        QuizFR data = gson.fromJson(json, QuizFR.class);
+
+        if (data != null && data.quizzes != null && !data.quizzes.isEmpty()) {
+            QuizFR.Quiz q = data.quizzes.get(0);
+            correctReponse = q.answer;
+            List<String> toutesReponses = new ArrayList<>();
+            toutesReponses.add(q.answer);
+            toutesReponses.addAll(q.badAnswers);
+            Collections.shuffle(toutesReponses);
+
+            Platform.runLater(() -> {
+                questionLabel.setText(q.question);
+                vraiFauxLabel.setText("");
+                suivantButton.setVisible(false);
+                reponseBox.getChildren().clear();
 
                 for (String answer : toutesReponses) {
                     Button btn = new Button(answer);
@@ -103,7 +153,7 @@ public class QuizController {
         reponseBox.getChildren().forEach(node -> node.setDisable(true));
 
         if (chosen.equals(correctReponse)) {
-            score += 1;
+            score++;
             scoreLabel.setText(score + "/5");
             vraiFauxLabel.setText("Correct !");
             vraiFauxLabel.setStyle("-fx-text-fill: green;");
@@ -111,6 +161,7 @@ public class QuizController {
             vraiFauxLabel.setText("Mauvaise réponse ! C'était : " + correctReponse);
             vraiFauxLabel.setStyle("-fx-text-fill: red;");
         }
+
         suivantButton.setVisible(true);
     }
 
@@ -128,13 +179,9 @@ public class QuizController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dialogue-intermediaire.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) scoreLabel.getScene().getWindow();
-            stage.setScene(new Scene(root, 800, 600)); // Garde la taille standard
+            stage.setScene(new Scene(root, 800, 600));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Erreur lors du chargement du dialogue intermédiaire : " + e.getMessage());
         }
-    }
-
-    private String nettoyerTexte(String t) {
-        return t.replace("&quot;", "\"").replace("&#039;", "'").replace("&amp;", "&").replace("&ldquo;", "“").replace("&rdquo;", "”");
     }
 }
