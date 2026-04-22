@@ -30,7 +30,7 @@ public class HelloController {
         dialogues.add(new DialogueLine("Chef", "Écoute-moi bien. Une bombe a été placée quelque part en ville, et tout repose sur toi. \n" + "Nous n'avons pas de temps à perdre. Chaque seconde compte. "));
         dialogues.add(new DialogueLine("Chef", "Voici la situation : tu vas devoir résoudre une série de questions. Chacune te donnera des " + "indices pour localiser la bombe. Le temps presse, mais nous avons encore une chance" + "si tu agis rapidement et avec précision."));
         dialogues.add(new DialogueLine("Chef", "Je sais que ce n'est pas facile, mais je crois en toi. Nous avons les outils nécessaires, et \n" + "tu as l'intelligence pour déchiffrer ces énigmes. Chaque réponse correcte nous \n" + "rapproche de la solution. "));
-        dialogues.add(new DialogueLine("Chef", "Ne laisse pas la pression te faire trébucher. Résous les énigmes, trouve l’emplacement \n" + "de la bombe, et nous pourrons la désamorcer avant qu'il ne soit trop tard. On compte \n" + "sur toi. La ville compte sur toi."));
+        dialogues.add(new DialogueLine("Chef", "Ne laisse pas la pression te faire trébucher. Résous les énigmes, trouve l’emplacement \n" + "de la bombe, et nous pourrons la désamorcer avant qu'il ne soit trop tard. On compte \n" + "sur toi. La ville compte sur toi. C'est partis !!"));
         textLabel.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
