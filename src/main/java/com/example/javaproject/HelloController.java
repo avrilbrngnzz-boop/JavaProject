@@ -9,6 +9,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import java.util.ArrayList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class HelloController {
     @FXML
@@ -76,7 +79,13 @@ public class HelloController {
             if (currentIndex < dialogues.size()) {
                 showDialogue(currentIndex);
             } else {
-                System.out.println("Fin des dialogues, on va vers le Quizz !");
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("quiz-view.fxml"));
+                    Stage stage = (Stage) textLabel.getScene().getWindow();
+                    stage.setScene(new Scene(loader.load(), 800, 500));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
