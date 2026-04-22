@@ -1,6 +1,5 @@
 package com.example.javaproject;
-import javax.xml.transform.Result;
-import java.util.List
+import java.util.List;
 
 public class QuizQuestion {
     public List<Result> results;
